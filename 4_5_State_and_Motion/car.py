@@ -80,8 +80,28 @@ class Car(object):
         
         # Update the state velocity
         self.state[1] = predicted_velocity
-    
-    
+
+    def turn_right(self):
+        """ Turning right "rotates" the velocity values, so vy = vx, and vx = -vy.
+
+            For example, if a car is going right at 1 world cell/sec this means
+            vy = 0, vx = 1,
+            and if it turns right, then it should be moving downwards on the world grid
+            at the same speed!
+            And down is vy = 1 and vx = 0
+            """
+
+        # Change the velocity
+        velocity = self.state[1]
+
+        predicted_velocity = [
+            velocity[1],
+            -velocity[0]
+        ]
+
+        # Update the state velocity
+        self.state[1] = predicted_velocity
+
     # Helper function for displaying the world + robot position
     # Assumes the world in a 2D numpy array and position is in the form [y, x]
     # path is a list of positions, and it's an optional argument
